@@ -1,14 +1,37 @@
 class TextformFiledValidator {
+
+
   // First name validator
   static String? validateFirstName(String value) {
-    final RegExp firstNameRegExp = RegExp(r'^[A-Za-z ]+$');
+    final RegExp firstNameRegExp = RegExp(r'^[A-Z][a-zA-Z ]*$');
     if (value == null || value.isEmpty) {
       return 'This field must not be empty';
-    } else if (!firstNameRegExp.hasMatch(value)) {
+    } else if (!RegExp(r'^[A-Z]').hasMatch(value[0])) {
+      return 'First letter must be a capital';
+    }else if (!firstNameRegExp.hasMatch(value)) {
       return 'Invalid name';
     }
+
     return null;
   }
+
+
+
+
+
+
+  // static String? validateFirstName(String value) {
+  //   final RegExp firstNameRegExp = RegExp(r'^[A-Za-z ]+$');
+  //   if (value == null || value.isEmpty) {
+  //     return 'This field must not be empty';
+  //   } else if (!firstNameRegExp.hasMatch(value)) {
+  //     return 'Invalid name';
+  //   }
+  //   return null;
+  // }
+
+
+
 
   // Last name validator
   static String? validateLastName(String value) {
@@ -33,6 +56,8 @@ class TextformFiledValidator {
     return null;
   }
 
+
+
   // Phone number validator
   static String? validatePhone(String value) {
     final RegExp phoneRegExp = RegExp(r'^\d+$');
@@ -43,6 +68,11 @@ class TextformFiledValidator {
     }
     return null;
   }
+
+
+
+
+
 
   /*
   *

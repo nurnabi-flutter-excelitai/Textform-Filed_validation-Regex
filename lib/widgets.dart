@@ -2,14 +2,17 @@
 import 'package:flutter/material.dart';
 
 class ReusableTextFormFieldWidget extends StatelessWidget {
+
+
   ReusableTextFormFieldWidget({
     super.key,
     required this.controller,
     required this.validator,
-    required this.textInputAction,
+    this.textInputAction,
     required this.keyboardType,
     this.onChanged,
     this.hintText,
+    this.prefixPhoneNumber
   });
 
   final TextEditingController controller;
@@ -18,6 +21,7 @@ class ReusableTextFormFieldWidget extends StatelessWidget {
   TextInputType? keyboardType;
   void Function(String)? onChanged;
   String? hintText;
+  Widget?prefixPhoneNumber;
 
 
   @override
@@ -34,6 +38,7 @@ class ReusableTextFormFieldWidget extends StatelessWidget {
         color: Colors.black,
       ),
       decoration: InputDecoration(
+        prefixIcon: prefixPhoneNumber,
         contentPadding:
         EdgeInsets.only(left: 12, right: 12, top: 14, bottom: 14),
         isDense: true,
