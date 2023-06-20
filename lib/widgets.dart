@@ -12,7 +12,9 @@ class ReusableTextFormFieldWidget extends StatelessWidget {
     required this.keyboardType,
     this.onChanged,
     this.hintText,
-    this.prefixPhoneNumber
+    this.focusNode,
+    this.prefixPhoneNumber,
+
   });
 
   final TextEditingController controller;
@@ -21,12 +23,14 @@ class ReusableTextFormFieldWidget extends StatelessWidget {
   TextInputType? keyboardType;
   void Function(String)? onChanged;
   String? hintText;
+  FocusNode?focusNode;
   Widget?prefixPhoneNumber;
 
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      focusNode: focusNode,
       cursorColor: Colors.black,
       keyboardType: keyboardType,
       textInputAction: textInputAction,
