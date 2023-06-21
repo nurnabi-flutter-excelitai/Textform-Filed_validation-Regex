@@ -11,7 +11,6 @@ class TextformFiledValidator {
     }else if (!firstNameRegExp.hasMatch(value)) {
       return 'Invalid name';
     }
-
     return null;
   }
 
@@ -35,7 +34,7 @@ class TextformFiledValidator {
 
   // Last name validator
   static String? validateLastName(String value) {
-    final RegExp lastNameRegExp = RegExp(r'^[A-Za-z ]+$');
+    final RegExp lastNameRegExp = RegExp(r'^nn[A-Za-z ]+$');
     if (value == null || value.isEmpty) {
       return 'This field must not be empty';
     } else if (!lastNameRegExp.hasMatch(value)) {
@@ -51,7 +50,7 @@ class TextformFiledValidator {
     if (value == null || value.isEmpty) {
       return 'This field must not be empty';
     } else if (!emailRegExp.hasMatch(value)) {
-      return 'Invalid email';
+      return 'ex: example.1234@gmail.com';
     }
     return null;
   }
@@ -71,7 +70,19 @@ class TextformFiledValidator {
 
 
 
+  // address validator
+  static String? validateAddress(String value) {
+    final RegExp addressRegExp = RegExp(
+        r'^[A-Za-z0-9\s.,\-:]+$'
+    );
 
+    if (value == null || value.isEmpty) {
+      return 'This field must not be empty';
+    } else if (!addressRegExp.hasMatch(value)) {
+      return 'Ex: address: Dhanmondi-32,';
+    }
+    return null;
+  }
 
 
   /*
@@ -86,30 +97,13 @@ class TextformFiledValidator {
   *
   * */
 
-  // static String? validatePassword(String value) {
-  //   final RegExp passwordRegExp = RegExp(
-  //       r'^(?=.*?[A-Za-z])(?=.*?[0-9])(?=.*?[!@#$%^&*()_+{}|:;"<>?])[A-Za-z0-9!@#$%^&*()_+{}|:;"<>?]{8,}$');
-  //   if (value == null || value.isEmpty) {
-  //     return 'This field must not be empty';
-  //   } else if (!passwordRegExp.hasMatch(value)) {
-  //     return 'Invalid password format';
-  //   } else if (value.length != 8) {
-  //     return 'Password must be exactly 8 characters long';
-  //   } else if (!value.contains(RegExp(r'[!@#$%^&*()_+{}|:;"<>?]'))) {
-  //     return 'Password must contain at least one special character';
-  //   }
-  //
-  //   return null;
-  // }
-
-
   static String? validatePassword(String value) {
     final RegExp passwordRegExp = RegExp(
         r'^(?=.*?[A-Za-z])(?=.*?[0-9])(?=.*?[!@#$%^&*()_+{}|:;"<>?])[A-Za-z0-9!@#$%^&*()_+{}|:;"<>?]+$');
     if (value == null || value.isEmpty) {
       return 'This field must not be empty';
     } else if (!passwordRegExp.hasMatch(value)) {
-      return 'Invalid password format';
+      return 'format:A1@34z 6 character';
     } else if (value.length != 6) {
       return 'Password must be exactly 6 characters long';
     } else if (!value.contains(RegExp(r'[!@#$%^&*()_+{}|:;"<>?]'))) {

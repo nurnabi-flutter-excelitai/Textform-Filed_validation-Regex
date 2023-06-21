@@ -236,6 +236,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   final TextEditingController lastNameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
+  final TextEditingController streetAddressController = TextEditingController();
   final TextEditingController passWordController = TextEditingController();
 
   final formKey = GlobalKey<FormState>();
@@ -244,6 +245,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   FocusNode lastNameFocusNode = FocusNode();
   FocusNode emailFocusNode = FocusNode();
   FocusNode phoneFocusNode = FocusNode();
+  FocusNode streetAddressFocusNode = FocusNode();
   FocusNode passwordFocusNode = FocusNode();
 
   @override
@@ -252,6 +254,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     lastNameFocusNode.dispose();
     emailFocusNode.dispose();
     phoneFocusNode.dispose();
+    streetAddressFocusNode.dispose();
     passwordFocusNode.dispose();
     super.dispose();
   }
@@ -388,6 +391,42 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 ),
 
 
+
+
+                // street address
+                const SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  'Street Address',
+                  style: TextStyle(fontSize: 14),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                TextFormField(
+                  focusNode: streetAddressFocusNode,
+                  onChanged: (value) {
+                    formKey.currentState!.validate();
+                  },
+                  controller: streetAddressController,
+                  validator: (value) {
+                    if (streetAddressFocusNode.hasFocus) {
+                      return TextformFiledValidator.validateAddress(
+                          streetAddressController.text);
+                    }
+                    return null;
+                  },
+                  decoration: InputDecoration(
+                    hintText: 'Enter your address',
+                  ),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+
+
+
                 // password
                 const SizedBox(
                   height: 20,
@@ -407,7 +446,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   controller: passWordController,
                   validator: (value) {
                     if (passwordFocusNode.hasFocus) {
-                      return TextformFiledValidator.validateLastName(
+                      return TextformFiledValidator.validatePassword(
                           passWordController.text);
                     }
                     return null;
@@ -422,26 +461,31 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
 
                 // sign up
-                InkWell(
-                  onTap: () {
-                    firstNameFocusNode.unfocus();
-                    lastNameFocusNode.unfocus();
-                    emailFocusNode.unfocus();
-                    phoneFocusNode.unfocus();
-                    passwordFocusNode.unfocus();
-
-                    if (formKey.currentState!.validate()) {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => HomeSreen()));
-                    }
-                  },
-                  child: Container(
-                    height: 40,
-                    width: double.infinity,
-                    color: Colors.blue,
-                    child: Center(child: Text('Sign Up')),
-                  ),
-                ),
+                // InkWell(
+                //   onTap: () {
+                //     if(passWordController.text.isEmpty){
+                //       return 'this filed must not be empty',
+                //     }
+                //
+                //
+                //     // firstNameFocusNode.unfocus();
+                //     // lastNameFocusNode.unfocus();
+                //     // emailFocusNode.unfocus();
+                //     // phoneFocusNode.unfocus();
+                //     // passwordFocusNode.unfocus();
+                //
+                //     // if (formKey.currentState!.validate()) {
+                //     //   Navigator.push(context,
+                //     //       MaterialPageRoute(builder: (context) => HomeSreen()));
+                //     // }
+                //   },
+                //   child: Container(
+                //     height: 40,
+                //     width: double.infinity,
+                //     color: Colors.blue,
+                //     child: Center(child: Text('Sign Up')),
+                //   ),
+                // ),
               ],
             ),
           ),
